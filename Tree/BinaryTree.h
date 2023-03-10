@@ -18,7 +18,7 @@ public:
 		return temp;
 	}
 
-	void Enqueue(const T& element)
+	void Enqueue(T element)
 	{
 		this->push(element);
 	}
@@ -91,7 +91,7 @@ public:
 	/** 广度优先遍历：从最低层（或者最高层）开始，向下（或者向上）逐层访问每个节点，在每一层次上，从左到右（或者从右到左）访问每个节点*/
 	/** 从上到下，从左到右的广度优先遍历实现 */
 	void BreadthFirst();
-	void BreadthFirst(const BTreeNode<T>* node);
+	void BreadthFirst(BTreeNode<T>* node);
 
 	/** 打印 */
 	void Visit(const BTreeNode<T>* node);
@@ -293,13 +293,14 @@ void BinaryTree<T>::BreadthFirst()
 
 /** 从上到下 从左到右 ：采用队列的方式实现*/
 template <typename T>
-void BinaryTree<T>::BreadthFirst(const BTreeNode<T>* node)
+void BinaryTree<T>::BreadthFirst(BTreeNode<T>* node)
 {
-	Queue<BTreeNode<T>*> queue;
-
-	if (node != nullptr)
+	BTreeNode<T> *p = node;
+	if (p != nullptr)
 	{
-		queue.Enqueue(node);
+		Queue<BTreeNode<T>*> queue;
+		queue.Enqueue(p);
+
 		while (!queue.empty())
 		{
 			node = queue.Dequeue();

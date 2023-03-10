@@ -19,6 +19,9 @@ int main()
 	binaryTree.PostOrder();
 	cout << endl;
 
+	binaryTree.BreadthFirst();
+	cout << endl;
+
 	if (BTreeNode<int>* tempNode = binaryTree.Search(1))
 	{
 		std::cout << "Find the ndoe " << tempNode->m_element << std::endl;
