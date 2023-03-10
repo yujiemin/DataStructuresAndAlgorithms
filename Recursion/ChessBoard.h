@@ -1,0 +1,7 @@
+#pragma once
+/** ∞Àª ∫ÛŒ Ã‚ */
+class ChessBoard
+{
+
+};
+

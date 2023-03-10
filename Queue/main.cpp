@@ -1,7 +1,21 @@
 
 #include "ArrayQueue.h"
+#include "ListQueue.h"
 
 int main()
+{
+	LQueue<int> lQueue;
+	lQueue.EnQueue(1);
+	lQueue.EnQueue(2);
+	lQueue.DeQueue();
+	lQueue.DeQueue();
+	lQueue.DeQueue();
+	lQueue.Display();
+
+	return 0;
+}
+
+int main1()
 {
 	AQueue<int, 5> aQueue;
 	aQueue.EnQueue(1);
