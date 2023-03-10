@@ -1,8 +1,28 @@
 #pragma once
+
 #include <iostream>
+#include <queue>
+#include <stack>
 using namespace std;
 
 /** BinaryTree 二叉树 */  //递归 理解栈的原理
+
+template <typename T>
+class Queue: public queue<T>
+{
+public:
+	T Dequeue()
+	{
+		T temp = this->front();
+		this->pop();
+		return temp;
+	}
+
+	void Enqueue(const T& element)
+	{
+		this->push(element);
+	}
+};
 
 template <typename T>
 struct BTreeNode
@@ -39,19 +59,39 @@ public:
 
 	/** 插入放置：小的放左边，大的放左边 */
 	void Insert(const T& element);
+	/** 递归的方法插入 */
+	void RecursiveInsert(BTreeNode<T>* node, const T& element);
 
+	/** 查找 */
+	BTreeNode<T>* Search(const T& element);
+	BTreeNode<T>* Search(BTreeNode<T>* node, const T& element);
+	/** 递归查找 */
+	BTreeNode<T>* RecursiveSearch(const T& element);
+	BTreeNode<T>* RecursiveSearch(BTreeNode<T>* node, const T& element);
+
+
+	/** 清除 */
+	void Clear();
+	void Clear(BTreeNode<T>* &node);
+
+	/** 是否为空 */
+	void IsEmpty();
+
+	/** 深度优先遍历：尽可能地向左（或向右）进行，在遇到第一个转折点时，向左（或向右）一步，然后再尽可能的向左（或向右）发展 */
 	/** 前序遍历 :根节点 -> 左子树 —> 右子树 */
 	void PreOrder();
 	void PreOrder(const BTreeNode<T>* node);
-
 	/** 中序遍历 : 左子树 -> 根节点 -> 右子树*/
 	void InOrder();
 	void InOrder(const BTreeNode<T>* node);
-
 	/** 后序遍历 : 左子树 -> 右子树 -> 根节点*/
 	void PostOrder();
 	void PostOrder(const BTreeNode<T>* node);
 
+	/** 广度优先遍历：从最低层（或者最高层）开始，向下（或者向上）逐层访问每个节点，在每一层次上，从左到右（或者从右到左）访问每个节点*/
+	/** 从上到下，从左到右的广度优先遍历实现 */
+	void BreadthFirst();
+	void BreadthFirst(const BTreeNode<T>* node);
 
 	/** 打印 */
 	void Visit(const BTreeNode<T>* node);
@@ -89,6 +129,108 @@ void BinaryTree<T>::Insert(const T& element)
 		pre->m_rightChild = new BTreeNode<T>(element);
 	}
 
+}
+
+template <typename T>
+void BinaryTree<T>::RecursiveInsert(BTreeNode<T>* node, const T& element)
+{
+	if (node == nullptr )
+	{
+		node = new BTreeNode<T>(element);
+	}
+	else if (element < node->m_element)
+	{
+		RecursiveInsert(node->m_leftChild);
+	}
+	else
+	{
+		RecursiveInsert(node->m_rightChild);
+	}
+}
+
+template <typename T>
+BTreeNode<T>* BinaryTree<T>::Search(const T& element)
+{
+	return Search(m_root, element);
+}
+
+template <typename T>
+BTreeNode<T>* BinaryTree<T>::Search(BTreeNode<T>* node, const T& element)
+{
+	while (node != nullptr)
+	{
+		if (node->m_element == element)
+		{
+			return node;
+		}
+
+		if (element < node->m_element)
+		{
+			node = node->m_leftChild;
+		}
+		else
+		{
+			node = node->m_rightChild;
+		}
+	}
+
+	return nullptr;
+}
+
+template <typename T>
+BTreeNode<T>* BinaryTree<T>::RecursiveSearch(const T& element)
+{
+	return  RecursiveSearch(m_root, element);
+}
+
+template <typename T>
+BTreeNode<T>* BinaryTree<T>::RecursiveSearch(BTreeNode<T>* node, const T& element)
+{
+	if (node != nullptr)
+	{
+		if (element == node->m_element)
+		{
+			return node;
+		}
+
+		if (element < node->m_element)
+		{
+			return RecursiveSearch(node->m_leftChild, element);
+		}
+		else
+		{
+			return RecursiveSearch(node->m_rightChild, element);
+		}
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+template <typename T>
+void BinaryTree<T>::Clear()
+{
+	Clear(m_root);
+}
+
+template <typename T>
+void BinaryTree<T>::Clear(BTreeNode<T>* &node)
+{
+	if (node != nullptr)
+	{
+		Clear(node->m_leftChild);
+		Clear(node->m_rightChild);
+		delete node;
+	}
+
+	node = nullptr;
+}
+
+template <typename T>
+void BinaryTree<T>::IsEmpty()
+{
+	return m_root == nullptr;
 }
 
 template <typename T>
@@ -140,6 +282,40 @@ void BinaryTree<T>::PostOrder(const BTreeNode<T>* node)
 		PostOrder(node->m_rightChild);
 		Visit(node);
 	}
+}
+
+template <typename T>
+void BinaryTree<T>::BreadthFirst()
+{
+	BreadthFirst(m_root);
+}
+
+
+/** 从上到下 从左到右 ：采用队列的方式实现*/
+template <typename T>
+void BinaryTree<T>::BreadthFirst(const BTreeNode<T>* node)
+{
+	Queue<BTreeNode<T>*> queue;
+
+	if (node != nullptr)
+	{
+		queue.Enqueue(node);
+		while (!queue.empty())
+		{
+			node = queue.Dequeue();
+			Visit(node);
+			if (node->m_leftChild)
+			{
+				queue.Enqueue(node->m_leftChild);
+			}
+
+			if (node->m_rightChild)
+			{
+				queue.Enqueue(node->m_rightChild);
+			}
+		}
+	}
+
 }
 
 template <typename T>

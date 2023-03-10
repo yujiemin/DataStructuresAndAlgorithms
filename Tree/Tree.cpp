@@ -19,6 +19,29 @@ int main()
 	binaryTree.PostOrder();
 	cout << endl;
 
+	if (BTreeNode<int>* tempNode = binaryTree.Search(1))
+	{
+		std::cout << "Find the ndoe " << tempNode->m_element << std::endl;
+	}
+	else
+	{
+		std::cout << "Search Do Not Found" << std::endl;
+	}
+
+	if (BTreeNode<int>* findNode = binaryTree.RecursiveSearch(8))
+	{
+		std::cout << "Recursive Search Find " << findNode->m_element << std::endl;
+	}
+	else
+	{
+		std::cout << "Recursive Do Not Found " << std::endl;
+	}
+
+
+	queue<int> tempQueue;
+	tempQueue.push(1);
+	int tempValue = tempQueue.front();
+
 	system("pause");
 
 	return 0;
