@@ -15,22 +15,17 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tree.cpp">
+    <ClCompile Include="02、数字拆分.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryTree.cpp">
+    <ClCompile Include="03、守望者的逃离 .cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadedTree.cpp">
+    <ClCompile Include="04、三值交换.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BinaryTree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="ThreadedTree.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
+    <ClCompile Include="05、数列分段.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

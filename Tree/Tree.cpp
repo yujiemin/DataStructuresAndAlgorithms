@@ -14,10 +14,24 @@ int main()
 
 	binaryTree.PreOrder();
 	cout << endl;
+	binaryTree.iteratePreOrder();
+	cout << endl;
+	cout << "------------" << endl;
+
+
 	binaryTree.InOrder();
 	cout << endl;
+	binaryTree.iterateInOrder();
+	cout << endl;
+	cout << "--------------" << endl;
+
+
 	binaryTree.PostOrder();
 	cout << endl;
+	binaryTree.iteratePostOrder();
+	cout << endl;
+
+	cout << "----------------" << endl;
 
 	binaryTree.BreadthFirst();
 	cout << endl;

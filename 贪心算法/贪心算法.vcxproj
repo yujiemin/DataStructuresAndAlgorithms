@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{26b78a23-6fe0-471b-a3b2-bb192c9749da}</ProjectGuid>
-    <RootNamespace>Tree</RootNamespace>
+    <ProjectGuid>{cdb1bd6a-e5d7-4378-ac3c-4df8deb26345}</ProjectGuid>
+    <RootNamespace>贪心算法</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>05、Tree</ProjectName>
+    <ProjectName>07、贪心算法</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,13 +128,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryTree.cpp" />
-    <ClCompile Include="ThreadedTree.cpp" />
-    <ClCompile Include="Tree.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="BinaryTree.h" />
-    <ClInclude Include="ThreadedTree.h" />
+    <ClCompile Include="02、数字拆分.cpp" />
+    <ClCompile Include="03、守望者的逃离 .cpp" />
+    <ClCompile Include="04、三值交换.cpp" />
+    <ClCompile Include="05、数列分段.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

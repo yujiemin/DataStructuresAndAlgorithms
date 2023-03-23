@@ -21,10 +21,10 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{26b78a23-6fe0-471b-a3b2-bb192c9749da}</ProjectGuid>
-    <RootNamespace>Tree</RootNamespace>
+    <ProjectGuid>{a68ffc84-b544-4c4b-ad13-d4ac92a20375}</ProjectGuid>
+    <RootNamespace>GC</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>05、Tree</ProjectName>
+    <ProjectName>06、GC</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,13 +128,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BinaryTree.cpp" />
-    <ClCompile Include="ThreadedTree.cpp" />
-    <ClCompile Include="Tree.cpp" />
+    <ClCompile Include="gcholder.cpp" />
+    <ClCompile Include="gcobject.cpp" />
+    <ClCompile Include="test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryTree.h" />
-    <ClInclude Include="ThreadedTree.h" />
+    <ClInclude Include="gcobject.h" />
+    <ClInclude Include="i_gcholder.h" />
+    <ClInclude Include="i_gcobject.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

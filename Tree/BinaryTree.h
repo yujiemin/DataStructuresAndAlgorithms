@@ -25,6 +25,24 @@ public:
 };
 
 template <typename T>
+class Stack: public stack<T>
+{
+public:
+	void Push(const T& element)
+	{
+		this->push(element);
+	}
+
+	T Pop()
+	{
+		T temp = this->top();
+		this->pop();
+		return temp;
+	}
+
+};
+
+template <typename T>
 struct BTreeNode
 {
 	BTreeNode()
@@ -88,10 +106,23 @@ public:
 	void PostOrder();
 	void PostOrder(const BTreeNode<T>* node);
 
+	/** 前序遍历：非递归实现 */
+	void iteratePreOrder();
+	void iteratePreOrder(BTreeNode<T>* node);
+	/** 中序遍历：非递归实现 */
+	void iterateInOrder();
+	void iterateInOrder(BTreeNode<T>* node);
+	/** 后序遍历 */
+	void iteratePostOrder();
+	void iteratePostOrder(BTreeNode<T>* node);
+
 	/** 广度优先遍历：从最低层（或者最高层）开始，向下（或者向上）逐层访问每个节点，在每一层次上，从左到右（或者从右到左）访问每个节点*/
 	/** 从上到下，从左到右的广度优先遍历实现 */
 	void BreadthFirst();
 	void BreadthFirst(BTreeNode<T>* node);
+
+	/** 删除节点 */
+
 
 	/** 打印 */
 	void Visit(const BTreeNode<T>* node);
@@ -282,6 +313,114 @@ void BinaryTree<T>::PostOrder(const BTreeNode<T>* node)
 		PostOrder(node->m_rightChild);
 		Visit(node);
 	}
+}
+
+template <typename T>
+void BinaryTree<T>::iteratePreOrder()
+{
+	iteratePreOrder(m_root);
+}
+
+template <typename T>
+void BinaryTree<T>::iteratePreOrder(BTreeNode<T>* node)
+{
+	if (node != nullptr)
+	{
+		Stack<BTreeNode<T>*> bTreeStack;
+		bTreeStack.Push(node);
+		while (!bTreeStack.empty())
+		{
+			node = bTreeStack.Pop();
+
+			Visit(node);
+			if (node->m_rightChild != nullptr)
+			{
+				bTreeStack.Push(node->m_rightChild);
+			}
+
+			if (node->m_leftChild != nullptr)
+			{
+				bTreeStack.Push(node->m_leftChild);
+			}
+		}
+
+	}
+}
+
+template <typename T>
+void BinaryTree<T>::iterateInOrder()
+{
+	iterateInOrder(m_root);
+}
+
+template <typename T>
+void BinaryTree<T>::iterateInOrder(BTreeNode<T>* node)
+{
+	Stack<BTreeNode<T>*> travStack;
+
+	while (node != nullptr)
+	{
+		while (node != nullptr)
+		{
+			if (node->m_rightChild != nullptr)
+			{
+				travStack.Push(node->m_rightChild);
+			}
+
+			travStack.Push(node);
+			node = node->m_leftChild;
+		}
+
+		node = travStack.Pop();
+		while (!travStack.empty() && node->m_rightChild == nullptr)
+		{
+			Visit(node);
+			node = travStack.Pop();
+		}
+		Visit(node);
+
+		if (!travStack.empty())
+		{
+			node = travStack.Pop();
+		}
+		else
+		{
+			node = nullptr;
+		}
+
+	}
+}
+
+template <typename T>
+void BinaryTree<T>::iteratePostOrder()
+{
+	iteratePostOrder(m_root);
+}
+
+template <typename T>
+void BinaryTree<T>::iteratePostOrder(BTreeNode<T>* node)
+{
+	Stack<BTreeNode<T>*> travStack;
+	travStack.Push(node);
+	// while (!travStack.empty())
+	// {
+	// 	//或者出现孩子节点都被访问过
+	// 	while (node->m_leftChild != nullptr || node->m_rightChild != nullptr)
+	// 	{
+	// 		if (node->m_rightChild != nullptr)
+	// 		{
+	// 			travStack.Push(node->m_rightChild);
+	// 		}
+	//
+	// 		if (node->m_leftChild != nullptr)
+	// 		{
+	// 			travStack.Push(node->m_leftChild);
+	// 		}
+	// 		node = node->m_leftChild;
+	// 	}
+	//
+	// 	node = travStack.Pop();
+	// }
 }
 
 template <typename T>

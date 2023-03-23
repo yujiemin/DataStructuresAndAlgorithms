@@ -15,22 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Tree.cpp">
+    <ClCompile Include="gcobject.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="BinaryTree.cpp">
+    <ClCompile Include="test.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="ThreadedTree.cpp">
+    <ClCompile Include="gcholder.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BinaryTree.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="gcobject.h">
+      <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="ThreadedTree.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="i_gcholder.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="i_gcobject.h">
+      <Filter>源文件</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
